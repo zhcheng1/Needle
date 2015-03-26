@@ -3,8 +3,10 @@ import os
 
 
 def wordvalue(file_name):
-    if os.path.isfile(file_name) is False:
-        print 'not a valid file'
+    try:
+        file(file_name).read()
+    except IOError:
+        print "Not a valid file."
     else:
         #build table for translating punctuations to spaces
         punct = string.punctuation

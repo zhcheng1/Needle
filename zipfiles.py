@@ -6,18 +6,18 @@ def zipfile_info(get_file_name):
     # check if it is a zipfile
     if zipfile.is_zipfile(get_file_name) is False:
         print "Not a valid zip file."
+    else:
+        # get the file path
+        get_file = os.path.abspath(get_file_name)
 
-    # get the file path
-    get_file = os.path.abspath(get_file_name)
-
-    # read a zip file
-    with zipfile.ZipFile(get_file, 'r') as z:
-        # get the info list of the file which includes filename, filesize
-        for i in z.infolist():
-            file_name = i.filename.split("/")
-            size = convert_bytes(i.file_size)
-            if file_name[-1] != "":
-                print "{}   {}".format(file_name[-1], size)
+        # read a zip file
+        with zipfile.ZipFile(get_file, 'r') as z:
+            # get the info list of the file which includes filename, filesize
+            for i in z.infolist():
+                file_name = i.filename.split("/")
+                size = convert_bytes(i.file_size)
+                if file_name[-1] != "":
+                    print "{}   {}".format(file_name[-1], size)
 
 
 def convert_bytes(bytes):
