@@ -4,13 +4,13 @@ def decimal(num):
         int(num)
     except ValueError:
         print "Not an integer"
-    
-    num = int(num)
-    if int(num) >= 0:
-        # check that the coming num is a valid integer here
-        print "0x%s" % ChangeHexInt(num), "0b%s" % ChangeBinInt(num)
     else:
-        print "Not a positive integer"
+        num = int(num)
+        if int(num) >= 0:
+            # check that the coming num is a valid integer here
+            print "0x%s" % ChangeHexInt(num), "0b%s" % ChangeBinInt(num)
+        else:
+            print "Not a positive integer"
 
 
 def ChangeHexInt(n):
