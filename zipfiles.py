@@ -2,25 +2,22 @@ import os
 import zipfile
 
 
-def zipfile_info():
-    # get the file name
-    get_file_name = raw_input("Enter a filename: ")
-
+def zipfile_info(get_file_name):
     # check if it is a zipfile
-    while zipfile.is_zipfile(get_file_name) is False:
-        get_file_name = raw_input("Not a valid zip file. Enter a filename: ")
+    if zipfile.is_zipfile(get_file_name) is False:
+        print "Not a valid zip file."
 
     # get the file path
     get_file = os.path.abspath(get_file_name)
 
     # read a zip file
     with zipfile.ZipFile(get_file, 'r') as z:
-        # get the info of the file which includes filename, filesize
+        # get the info list of the file which includes filename, filesize
         for i in z.infolist():
             file_name = i.filename.split("/")
             size = convert_bytes(i.file_size)
             if file_name[-1] != "":
-                print file_name[-1], " ", size
+                print "{}   {}".format(file_name[-1], size)
 
 
 def convert_bytes(bytes):
@@ -38,10 +35,11 @@ def convert_bytes(bytes):
         kilobytes = bytes / 1024
         size = '%.1f KB' % kilobytes
     else:
-        size = '%d Bytes' % bytes
+        size = '%d bytes' % bytes
     return size
 
 
 if __name__ == '__main__':
-    zipfile_info()
+    import sys
+    zipfile_info(sys.argv[1])
 

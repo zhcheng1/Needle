@@ -1,0 +1,21 @@
+VERSION.txt
+dist
+
+# Editor/IDE files
+*~
+.idea/
+*.tmproj
+*.tmproject
+tmtags
+.*.sw[a-z]
+*.un~
+
+
+# Installer logs
+pip-log.txt
+*.log
+
+.project
+
+#LocalFiles
+Needle/

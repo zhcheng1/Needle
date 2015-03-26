@@ -3,12 +3,9 @@ from operator import itemgetter
 import os
 
 
-
-def wordcount():
-    get_file = raw_input("Enter a filename: ")
-
-    while os.path.isfile(get_file) is False:
-        get_file = raw_input("Not a valid file. Enter a filename: ")
+def wordcount(get_file):
+    if os.path.isfile(get_file) is False:
+        print "Not a valid file."
 
     #build table for translating punctuations to spaces
     punct = "!\"#$%&()*+,-./:;<=>?@[\]^_`{|}~'"
@@ -23,7 +20,7 @@ def wordcount():
         # remove all punctuation
         for line in test_file:
             line = line.translate(trantab).split()
-            # turn all words into lowercase
+            # turn all words into lowercase, and add them into a dict
             for word in line:
                 word = word.lower()
                 if word != '':
@@ -40,4 +37,5 @@ def wordcount():
 
 
 if __name__ == '__main__':
-    wordcount()
+    import sys
+    wordcount(sys.argv[1])

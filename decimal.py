@@ -1,12 +1,17 @@
 
 def decimal(num):
-    # assuming that the coming num is a valid integer here
-    print "0x" + ChangeHexInt(num), "Binary: " + ChangeBinInt(num)
+    try:
+        int(num)
+    except ValueError:
+        print "Not an integer"
+    else:
+        # assuming that the coming num is a valid integer here
+        print "0x%s" % ChangeHexInt(int(num)), "0b%s" % ChangeBinInt(int(num))
 
 
 def ChangeHexInt(n):
     if n == 0:
-        return '0'
+        return 0
     else:
         hex_num = ''
         hex_digits = ('0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F')
@@ -23,15 +28,15 @@ def ChangeHexInt(n):
 
 def ChangeBinInt(n):
     if n == 0:
-        return '0'
+        return 0
     else:
         bin_num = ''
         rem = n % 2
         quot = n / 2
         bin_num += str(rem)
         while quot > 1:
+            rem = quot % 2
             quot /= 2
-            rem %= 2
             bin_num += str(rem)
         bin_num += str(quot)
         return bin_num[::-1]
@@ -39,4 +44,4 @@ def ChangeBinInt(n):
 
 if __name__ == '__main__':
     import sys
-    decimal(sys.argv[0])
+    decimal(sys.argv[1])
