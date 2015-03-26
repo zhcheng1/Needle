@@ -5,8 +5,12 @@ def decimal(num):
     except ValueError:
         print "Not an integer"
     else:
-        # assuming that the coming num is a valid integer here
-        print "0x%s" % ChangeHexInt(int(num)), "0b%s" % ChangeBinInt(int(num))
+        num = int(num)
+        if int(num) >= 0:
+            # check that the coming num is a valid integer here
+            print "0x%s" % ChangeHexInt(num), "0b%s" % ChangeBinInt(num)
+        else:
+            print "Not a positive integer"
 
 
 def ChangeHexInt(n):
